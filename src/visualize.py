@@ -2,16 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# -----------------------------
-# 1. Load Dataset
-# -----------------------------
+
 df = pd.read_csv("data/machine_data.csv")
 
 print("Dataset Loaded")
 
-# -----------------------------
-# 2. FAILURE DISTRIBUTION
-# -----------------------------
 plt.figure(figsize=(6,4))
 sns.countplot(x="failure", data=df)
 plt.title("Failure vs Healthy Machines")
@@ -20,9 +15,6 @@ plt.ylabel("Count")
 plt.savefig("outputs/failure_distribution.png")
 plt.show()
 
-# -----------------------------
-# 3. SENSOR TRENDS
-# -----------------------------
 sensors = ["temperature", "vibration", "pressure", "rpm", "wear_level"]
 
 for sensor in sensors:
@@ -34,9 +26,7 @@ for sensor in sensors:
     plt.savefig(f"outputs/{sensor}_distribution.png")
     plt.show()
 
-# -----------------------------
-# 4. CORRELATION HEATMAP
-# -----------------------------
+
 plt.figure(figsize=(8,6))
 sns.heatmap(df.corr(), annot=True, cmap="coolwarm")
 plt.title("Sensor Correlation Heatmap")
